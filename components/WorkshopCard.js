@@ -1,4 +1,4 @@
-export default function WorkshopCard({ workshop, onView, onRegister }) {
+export default function WorkshopCard({ workshop, onView, onRegister, onDelete }) {
   return (
     <div className="workshop-card">
       <h2>{workshop.title || 'Untitled Workshop'}</h2>
@@ -13,13 +13,22 @@ export default function WorkshopCard({ workshop, onView, onRegister }) {
         <span>Sessions: {Array.isArray(workshop.sessions) ? workshop.sessions.length : 0}</span>
         <span>Participants: {Array.isArray(workshop.participants) ? workshop.participants.length : 0}</span>
       </div>
-      <button onClick={onView} className="view-btn">
-        View Details
-      </button>
-      {onRegister && (
-        <button onClick={onRegister} className="register-btn">
-          Register
+      <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+        <button onClick={onView} className="view-btn">
+          View Details
         </button>
+        {onDelete && (
+          <button onClick={onDelete} className="delete-btn">
+            Delete
+          </button>
+        )}
+      </div>
+      {onRegister && (
+        <div style={{ marginTop: '0.5rem', width: '100%' }}>
+          <button onClick={onRegister} className="register-btn" style={{ width: '100%' }}>
+            Register
+          </button>
+        </div>
       )}
     </div>
   );

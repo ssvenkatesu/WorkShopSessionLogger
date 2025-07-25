@@ -9,7 +9,9 @@ export async function GET(req) {
   try {
     await requireRole('admin')(req);
     await dbConnect();
-    const workshops = await Workshop.find().populate('sessions').populate('participants', 'name email');
+    const workshops = await Workshop.find()
+      .populate({ path: 'sessions', populate: { path: 'attendance', select: 'name email' } })
+      .populate('participants', 'name email');
     const sessions = await Session.find().populate('workshop').populate('attendance');
     const participants = await User.find({ role: 'participant' }).select('name email');
 

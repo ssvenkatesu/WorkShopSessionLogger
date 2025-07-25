@@ -46,15 +46,15 @@ export default function ParticipantDashboard() {
       </div>
       <div className="stats-container">
         <div className="stat-card">
-          <h2>Registered Workshops</h2>
+          <h2 style={{color: '#000000'}}>Registered Workshops</h2>
           <p>{dashboard?.registeredWorkshops ?? 0}</p>
         </div>
         <div className="stat-card">
-          <h2>Upcoming Sessions</h2>
+          <h2 style={{color: '#000000'}}>Upcoming Sessions</h2>
           <p>{dashboard?.upcomingSessions ?? 0}</p>
         </div>
         <div className="stat-card">
-          <h2>Attendance Rate</h2>
+          <h2 style={{color: '#000000'}}>Attendance Rate</h2>
           <p>{dashboard?.attendanceRate ?? 0}%</p>
         </div>
       </div>

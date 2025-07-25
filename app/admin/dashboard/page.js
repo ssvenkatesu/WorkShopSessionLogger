@@ -40,21 +40,21 @@ export default function AdminDashboard() {
       <div className="page-header">
         <h1>Admin Dashboard</h1>
       </div>
-      <div className="stats-container">
+      <div  className="stats-container">
         <div className="stat-card">
-          <h2>Workshops</h2>
+          <h2 style={{color: '#000000'}}>Workshops</h2>
           <p>{stats.workshopsCount}</p>
         </div>
         <div className="stat-card">
-          <h2>Sessions</h2>
+          <h2 style={{color: '#000000'}}>Sessions</h2>
           <p>{stats.sessionsCount}</p>
         </div>
         <div className="stat-card">
-          <h2>Participants</h2>
+          <h2 style={{color: '#000000'}}>Participants</h2>
           <p>{stats.participantsCount}</p>
         </div>
         <div className="stat-card">
-          <h2>Facilitators</h2>
+          <h2 style={{color: '#000000'}}>Facilitators</h2>
           <p>{stats.facilitatorsCount}</p>
         </div>
       </div>

@@ -99,14 +99,16 @@ export default function ParticipantWorkshopsPage() {
           workshops.map(workshop => {
             const isRegistered = user && Array.isArray(workshop.participants) && workshop.participants.some(p => (p._id || p) === user.id);
             return (
-              <div key={workshop._id} className="workshop-with-participants">
-                <WorkshopCard 
-                  workshop={workshop} 
-                  onView={() => router.push(`/participant/workshops/${workshop._id}`)}
-                  onRegister={!isRegistered ? () => registerForWorkshop(workshop._id) : undefined}
-                />
-                {isRegistered && <div className="registered-label">Registered</div>}
-                <div className="participants-section card-glass">
+              <div key={workshop._id} className="workshop-with-participants horizontal-card">
+                <div className="workshop-details-col">
+                  <WorkshopCard 
+                    workshop={workshop} 
+                    onView={() => router.push(`/participant/workshops/${workshop._id}`)}
+                    onRegister={!isRegistered ? () => registerForWorkshop(workshop._id) : undefined}
+                  />
+                  {isRegistered && <div className="registered-label">Registered</div>}
+                </div>
+                <div className="participants-col participants-section card-glass">
                   <h2>Registered Participants</h2>
                   {workshop.participants && workshop.participants.length > 0 ? (
                     <ul className="participant-list">

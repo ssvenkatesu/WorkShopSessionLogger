@@ -272,37 +272,94 @@
   color: #ffd166;
   transform: translateY(-2px) scale(1.05);
 }
+
+body {
+  background: linear-gradient(120deg, #f5f7fb 60%, #e0ffe0 100%);
+  min-height: 100vh;
+  animation: animatedGradient 10s ease-in-out infinite alternate;
+}
+
+@keyframes animatedGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Enhanced Buttons */
+.download-btn, .register-btn, .attendance-btn, .view-btn {
+  background: linear-gradient(90deg, #4ade80 60%, #ffd166 100%);
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(76,218,128,0.13);
+  font-size: 1.15rem;
+  font-weight: 800;
+  padding: 1rem 2.2rem;
+  border: none;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s, border 0.2s;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+}
+.download-btn:hover, .register-btn:hover, .attendance-btn:not(:disabled):hover, .view-btn:hover {
+  background: linear-gradient(90deg, #ffd166 60%, #4ade80 100%);
+  box-shadow: 0 8px 32px rgba(76,218,128,0.22);
+  border: 2px solid #ffd166;
+  color: #4ade80;
+  transform: translateY(-2px) scale(1.07);
+}
+
+.card-glass, .certificate-card, .stat-card, .session-list li, .participant-list li {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px 0 rgba(76,218,128,0.13);
+  border: 1.5px solid rgba(76,218,128,0.10);
+  color: #222;
+}
+
 @media (max-width: 900px) {
   .participant-dashboard-inner, .welcome-banner, .page-header, .upcoming-sessions {
+    padding: 1.2rem 0.5rem;
+    border-radius: 18px;
     max-width: 98vw;
-    padding-left: 1vw;
-    padding-right: 1vw;
   }
   .stats-container {
     flex-direction: column;
-    align-items: center;
     gap: 1.2rem;
   }
   .stat-card {
-    min-width: 180px;
-    max-width: 98vw;
+    min-width: 0;
     width: 100%;
-    margin: 0.7rem 0;
+    max-width: 100%;
+    padding: 1rem 0.7rem;
   }
   .participant-layout-row {
     flex-direction: column;
   }
   .participant-sidebar {
-    min-width: 100vw;
-    max-width: 100vw;
-    box-shadow: none;
-    padding: 1.2rem 0.5rem;
+    width: 100%;
+    border-radius: 0 0 18px 18px;
+    margin-bottom: 1.5rem;
   }
   .participant-main-content {
-    min-width: 100vw;
-    padding: 0;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+  .workshop-details {
+    padding: 1.2rem 0.5rem;
+    border-radius: 18px;
+    max-width: 98vw;
+  }
+  .sessions-section, .participants-section {
+    padding: 1rem 0.7rem;
+    border-radius: 14px;
   }
 }
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
@@ -484,111 +541,379 @@
   transform: translateY(-2px) scale(1.07);
   box-shadow: 0 8px 32px rgba(67,97,238,0.22);
   border: 2px solid #ffd166;
+  color: #000;
+}
+  
+.stat-card{
+  color: #000000;  
 }
 
+/* --- Enhanced Workshops Page Styles for Participants --- */
+.workshops-page {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem 4rem 2.5rem;
+  background: rgba(255,255,255,0.97);
+  border-radius: 40px;
+  box-shadow: 0 8px 32px 0 rgba(67,97,238,0.10), 0 0 32px 2px #48cae422;
+  animation: fadeInUp 0.7s;
+}
+.workshops-page h1 {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #3f37c9;
+  margin-bottom: 2.2rem;
+  text-align: center;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 8px #48cae444;
+}
+.workshops-list {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.horizontal-card, .workshop-with-participants {
+  flex: 1 1 calc(48% - 2rem);
+  max-width: calc(48% - 2rem);
+  min-width: 320px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+}
 @media (max-width: 900px) {
-  .participant-content {
-    padding: 1.2rem 0.5rem;
-    border-radius: 18px;
+  .horizontal-card, .workshop-with-participants {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
   }
-  .attendance-options {
+}
+@media (max-width: 700px) {
+  .horizontal-card, .workshop-with-participants {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .workshops-list {
     flex-direction: column;
     gap: 1.2rem;
+    align-items: stretch;
   }
-  .qr-option, .manual-option {
-    min-width: 0;
-    width: 100%;
-    max-width: 100%;
-    padding: 1rem 0.7rem;
-  }
-
-  .workshop-details {
-    max-width: 750px;
-    margin: 2.5rem auto 2rem auto;
-    background: rgba(255,255,255,0.96);
-    border-radius: 28px;
-    box-shadow: 0 8px 32px 0 rgba(67,97,238,0.13), 0 0 32px 2px #48cae422;
-    padding: 2.5rem 2rem 2rem 2rem;
-    display: flex;
+}
+@media (max-width: 900px) {
+  .workshops-list {
     flex-direction: column;
-    align-items: flex-start;
-    animation: fadeInUp 0.7s;
+    gap: 1.2rem;
+    align-items: stretch;
   }
-  
-  .workshop-details h1 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #3f37c9;
-    margin-bottom: 1.2rem;
-    text-shadow: 0 2px 8px #48cae444;
-  }
-  
-  .workshop-details p {
-    font-size: 1.13rem;
-    color: #222;
-    margin-bottom: 0.7rem;
-    line-height: 1.5;
-  }
-  
-  .sessions-section, .participants-section {
-    width: 100%;
-    background: rgba(67,97,238,0.07);
+}
+.workshop-with-participants {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background: rgba(72,202,228,0.07);
+  border-radius: 22px;
+  box-shadow: 0 2px 12px #48cae422;
+  padding: 2rem 1.5rem;
+  align-items: stretch;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.participants-section {
+  min-width: 260px;
+  flex: 1 1 260px;
+  margin-top: 0.5rem;
+  background: rgba(255,255,255,0.98);
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #4ade8011;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.participants-section h2 {
+  color: #4361ee;
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px #4361ee22;
+}
+.participant-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.participant-list li {
+  background: rgba(76,218,128,0.10);
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 1.05rem;
+  color: #222;
+  box-shadow: 0 1px 6px #4ade8022;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.participant-list li:last-child {
+  margin-bottom: 0;
+}
+.registered-label {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: linear-gradient(90deg, #4ade80 60%, #ffd166 100%);
+  color: #222;
+  font-weight: 800;
+  font-size: 1.02rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #4ade8033;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+@media (max-width: 900px) {
+  .workshops-page {
+    padding: 1.2rem 0.5rem 2rem 0.5rem;
     border-radius: 18px;
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 12px rgba(67,97,238,0.08);
+    max-width: 98vw;
+    width: 100vw;
   }
-  
-  .sessions-section h2, .participants-section h2 {
-    color: #4361ee;
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 8px #4361ee22;
+  .workshops-list {
+    gap: 1.2rem;
+    align-items: stretch;
   }
-  
-  .session-list, .participant-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .workshop-with-participants {
+    max-width: 98vw;
+    width: 100vw;
+    padding: 1.2rem 0.7rem;
+    border-radius: 14px;
   }
-  
-  .session-list li, .participant-list li {
-    background: rgba(76,218,128,0.10);
+  .participants-section {
+    padding: 1rem 0.7rem;
     border-radius: 12px;
-    margin-bottom: 0.7rem;
-    padding: 0.8rem 1.1rem;
-    font-size: 1.08rem;
-    color: #222;
-    box-shadow: 0 1px 6px #4ade8022;
-    transition: background 0.2s, box-shadow 0.2s;
   }
-  
-  .session-list li b {
-    color: #3f37c9;
-    font-weight: 700;
+  .registered-label {
+    top: 0.7rem;
+    right: 0.7rem;
+    font-size: 0.98rem;
+    padding: 0.4rem 0.9rem;
   }
-  
-  .session-list li:hover, .participant-list li:hover {
-    background: rgba(67,97,238,0.13);
-    box-shadow: 0 4px 16px #4361ee22;
+}
+
+/* --- Enhanced Single Workshop Details Page Styles for Participants --- */
+.participant-details {
+  max-width: 900px;
+  margin: 2.5rem auto 2rem auto;
+  background: rgba(255,255,255,0.98);
+  border-radius: 32px;
+  box-shadow: 0 8px 32px 0 rgba(67,97,238,0.10), 0 0 32px 2px #48cae422;
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: fadeInUp 0.7s;
+}
+.participant-details h1 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #3f37c9;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 2px 8px #48cae444;
+}
+.participant-details p {
+  font-size: 1.13rem;
+  color: #222;
+  margin-bottom: 0.7rem;
+  line-height: 1.5;
+}
+.sessions-section {
+  width: 100%;
+  background: rgba(67,97,238,0.07);
+  border-radius: 18px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(67,97,238,0.08);
+}
+.sessions-section h2 {
+  color: #4361ee;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px #4361ee22;
+}
+.session-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.session-list li {
+  background: rgba(76,218,128,0.10);
+  border-radius: 12px;
+  margin-bottom: 0.7rem;
+  padding: 0.8rem 1.1rem;
+  font-size: 1.08rem;
+  color: #222;
+  box-shadow: 0 1px 6px #4ade8022;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.session-list li b {
+  color: #3f37c9;
+  font-weight: 700;
+}
+.session-list li:hover {
+  background: rgba(67,97,238,0.13);
+  box-shadow: 0 4px 16px #4361ee22;
+}
+.participants-section {
+  width: 100%;
+  background: rgba(255,255,255,0.98);
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #4ade8011;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.participants-section h2 {
+  color: #4361ee;
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 8px #4361ee22;
+}
+.participant-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.participant-list li {
+  background: rgba(76,218,128,0.10);
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 1.05rem;
+  color: #222;
+  box-shadow: 0 1px 6px #4ade8022;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.participant-list li:last-child {
+  margin-bottom: 0;
+}
+@media (max-width: 900px) {
+  .participant-details {
+    padding: 1.2rem 0.5rem 2rem 0.5rem;
+    border-radius: 18px;
   }
-  
-  .card-glass {
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(8px);
-    border-radius: 22px;
-    box-shadow: 0 8px 32px 0 rgba(76,218,128,0.13);
+  .sessions-section, .participants-section {
+    padding: 1rem 0.7rem;
+    border-radius: 14px;
   }
-  
-  @media (max-width: 900px) {
-    .workshop-details {
-      padding: 1.2rem 0.5rem;
-      border-radius: 18px;
-      max-width: 98vw;
-    }
-    .sessions-section, .participants-section {
-      padding: 1rem 0.7rem;
-      border-radius: 14px;
-    }
+}
+
+/* --- Horizontal Workshop Card Layout for Participant Workshops Page --- */
+.horizontal-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 2rem;
+  background: rgba(72,202,228,0.07);
+  border-radius: 22px;
+  box-shadow: 0 2px 12px #48cae422;
+  padding: 2rem 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+.workshop-details-col {
+  flex: 2 1 340px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+.participants-col {
+  flex: 1 1 260px;
+  min-width: 0;
+  max-width: 100%;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+@media (max-width: 900px) {
+  .horizontal-card {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.2rem 0.7rem;
+    max-width: 98vw;
+    width: 100vw;
   }
+  .workshop-details-col, .participants-col {
+    min-width: 0;
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Registered label at top right of the card */
+.horizontal-card {
+  position: relative;
+}
+.registered-label {
+  position: absolute;
+  top: 0.01rem;
+  width: 150px;
+ 
+  left: 400px;
+  right: 0;
+  background: linear-gradient(90deg, #4ade80 60%, #ffd166 100%);
+  color: #222;
+  font-weight: 800;
+  font-size: 1.02rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #4ade8033;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+@media (max-width: 900px) {
+  .registered-label {
+    top: 0.7rem;
+    right: 0.7rem;
+    font-size: 0.98rem;
+    padding: 0.4rem 0.9rem;
+  }
+}
+
+.delete-btn {
+  background: linear-gradient(90deg, #ff6b6b 60%, #ffb366 100%);
+  color: #fff;
+  border-radius: 14px;
+  font-weight: 800;
+  padding: 1rem 2.2rem; /* Match .view-btn and .register-btn */
+  border: none;
+  font-size: 1.15rem; /* Match .view-btn and .register-btn */
+  box-shadow: 0 2px 12px #ff6b6b22;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+  cursor: pointer;
+  height: 60px;
+  width: 150px;
+  display: inline-block;
+}
+.delete-btn:hover {
+  background: linear-gradient(90deg, #ffb366 60%, #ff6b6b 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
+}

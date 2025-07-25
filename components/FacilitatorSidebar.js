@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function FacilitatorSidebar() {
   return (
-    <div className="sidebar facilitator-sidebar">
+    <div className="sidebar facilitator-sidebar" >
       <div className="sidebar-header">
         <h1>Workshop Logger</h1>
         <p>Facilitator Panel</p>

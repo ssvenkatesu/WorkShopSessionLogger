@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { use, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSessionDetails, updateSession } from '@/lib/api';
-import '../../../styles/facilitator.css';
+import '@/styles/facilitator.css';
 
 export default function FacilitatorSessionPage({ params }) {
+  const { id } = use(params);
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -23,7 +24,7 @@ export default function FacilitatorSessionPage({ params }) {
           return;
         }
         
-        const data = await getSessionDetails(params.id);
+        const data = await getSessionDetails(id);
         setSession(data);
       } catch (err) {
         setError(err.message);
@@ -33,7 +34,7 @@ export default function FacilitatorSessionPage({ params }) {
     };
     
     fetchSession();
-  }, [params.id]);
+  }, [id]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();

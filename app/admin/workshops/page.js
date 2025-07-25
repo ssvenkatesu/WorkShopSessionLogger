@@ -34,6 +34,24 @@ export default function WorkshopsPage() {
     fetchWorkshops();
   }, []);
 
+  async function handleDeleteWorkshop(workshopId) {
+    if (!window.confirm('Are you sure you want to delete this workshop? This action cannot be undone.')) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`/api/workshops/${workshopId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Failed to delete workshop');
+      setWorkshops(ws => ws.filter(w => w._id !== workshopId));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   if (loading) {
     return <div className="loading">Loading workshops...</div>;
   }
@@ -63,6 +81,7 @@ export default function WorkshopsPage() {
               key={workshop._id} 
               workshop={workshop} 
               onView={() => router.push(`/admin/workshops/${workshop._id}`)}
+              onDelete={() => handleDeleteWorkshop(workshop._id)}
             />
           ))
         )}

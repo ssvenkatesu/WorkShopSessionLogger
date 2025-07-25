@@ -21,7 +21,7 @@
   background: var(--glass-bg);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
-  backdrop-filter: var(--glass-blur);
+
   border: 1.5px solid rgba(67,97,238,0.10);
   transition: box-shadow 0.3s, transform 0.2s, border 0.3s;
 }
@@ -35,7 +35,7 @@
   background: linear-gradient(135deg, rgba(67,97,238,0.95) 60%, rgba(76,201,240,0.85) 100%);
   box-shadow: 0 4px 24px rgba(67,97,238,0.13);
   border-radius: 0 24px 24px 0;
-  backdrop-filter: blur(8px);
+  
   border-right: 2px solid rgba(67,97,238,0.10);
 }
 .sidebar-nav a, .logout-btn {
@@ -203,7 +203,7 @@ li:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+  background: linear-gradient(120deg, #efefef 0%, #c4cfe1 100%);
   background-size: 200% 200%;
   animation: gradientMove 8s ease-in-out infinite;
   position: relative;
@@ -215,7 +215,7 @@ li:hover {
   100% { background-position: 0% 50%; }
 }
 .home-container > h1 {
-  color: #fff;
+  color: #0f0e0e;
   font-size: 3rem;
   font-weight: 900;
   letter-spacing: -2px;
@@ -223,7 +223,7 @@ li:hover {
   margin-bottom: 1.2rem;
 }
 .home-container > p {
-  color: #e0e7ff;
+  color: #576aae;
   font-size: 1.3rem;
   margin-bottom: 2.5rem;
   text-shadow: 0 2px 8px #2575fc33;

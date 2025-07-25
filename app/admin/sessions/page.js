@@ -35,6 +35,24 @@ export default function SessionsPage() {
     fetchSessions();
   }, []);
 
+  async function handleDeleteSession(sessionId) {
+    if (!window.confirm('Are you sure you want to delete this session? This action cannot be undone.')) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`/api/sessions/${sessionId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Failed to delete session');
+      setSessions(ss => ss.filter(s => s._id !== sessionId));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   if (loading) {
     return <div className="loading">Loading sessions...</div>;
   }
@@ -58,6 +76,7 @@ export default function SessionsPage() {
                 key={session._id} 
                 session={session} 
                 onView={() => router.push(`/admin/sessions/${session._id}`)}
+                onDelete={() => handleDeleteSession(session._id)}
               />
             ))
           )}

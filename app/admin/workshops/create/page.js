@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createWorkshop } from '@/lib/api';
-import '../../../../styles/admin.css';
 
 export default function WorkshopCreateForm() {
   const router = useRouter();
@@ -19,6 +18,14 @@ export default function WorkshopCreateForm() {
   const [facilitators, setFacilitators] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !sessionStorage.getItem('workshopCreateReloaded')) {
+      sessionStorage.setItem('workshopCreateReloaded', 'true');
+      window.location.reload();
+    }
+  }, []);
 
   useEffect(() => {
     async function fetchFacilitators() {
@@ -145,5 +152,7 @@ export default function WorkshopCreateForm() {
         </button>
       </form>
     </div>
+
+    
   );
 } 

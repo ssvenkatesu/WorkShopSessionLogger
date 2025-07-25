@@ -26,7 +26,9 @@ export async function POST(req) {
     
     await dbConnect();
     const body = await req.json();
-    const session = new Session(body);
+    // Generate a unique qrCode for the session
+    const qrCode = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const session = new Session({ ...body, qrCode });
     await session.save();
     
     // Add session to workshop

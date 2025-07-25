@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSessionDetails, markAttendance } from '@/lib/api';
-import { submitFeedback, getSessionFeedback } from '@/lib/api';
+
 import QRCodeGenerator from '@/components/QRCodeGenerator';
 import '../../../../styles/participant.css';
 import React from 'react';
@@ -78,18 +78,7 @@ export default function SessionPage({ params }) {
     }
   };
 
-  const handleFeedback = async (e) => {
-    e.preventDefault();
-    setFeedbackMsg('');
-    const res = await submitFeedback(id, rating, comment);
-    if (res.success) {
-      setFeedbackMsg('Thank you for your feedback!');
-      setMyFeedback(res.feedback);
-      setFeedbacks([...feedbacks, res.feedback]);
-    } else {
-      setFeedbackMsg(res.message || 'Could not submit feedback');
-    }
-  };
+
 
   if (loading) {
     return <div className="loading">Loading session details...</div>;
@@ -123,7 +112,7 @@ export default function SessionPage({ params }) {
               <h3>Manual Attendance</h3>
               <button 
                 onClick={handleAttendance}
-                disabled={loading || session.attendance.some(a => a._id === JSON.parse(localStorage.getItem('user')).id)}
+                disabled={loading || session.attendance.some(a => (a._id || a) === JSON.parse(localStorage.getItem('user')).id)}
                 className="attendance-btn"
               >
                 {loading ? 'Marking...' : 'Mark My Attendance'}

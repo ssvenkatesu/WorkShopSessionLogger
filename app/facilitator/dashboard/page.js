@@ -36,27 +36,27 @@ export default function FacilitatorDashboard() {
   if (error) return <div className="error-message">{error}</div>;
 
   return (
-    <div className="facilitator-layout">
+    <div  style={{width:'100%',position:'relative',right:'110px'}} >
       <DashboardLayout
-        header={<h1 className="page-header">Facilitator Dashboard</h1>}
+        header={<h1 className="page-header" style={{color:'#000000'}}>Faculty Dashboard</h1>}
       >
-        <div className="facilitator-content">
+        <div className="facilitator-content" style={{width:'100%'}}>
           <div className="stats-container">
             <div className="stat-card">
-              <h2>Assigned Workshops</h2>
+              <h2 style={{color: '#000000'}}>Assigned Workshops</h2>
               <p>{dashboard.assignedWorkshops}</p>
             </div>
             <div className="stat-card">
-              <h2>Upcoming Sessions</h2>
+              <h2 style={{color: '#000000'}}>Upcoming Sessions</h2>
               <p>{dashboard.upcomingSessions}</p>
             </div>
             <div className="stat-card">
-              <h2>Completed Sessions</h2>
+              <h2 style={{color: '#000000'}}>Completed Sessions</h2>
               <p>{dashboard.completedSessions}</p>
             </div>
           </div>
           <div className="upcoming-sessions">
-            <h2>Upcoming Sessions</h2>
+            <h2 style={{color: '#000000'}}>Upcoming Sessions</h2>
             {dashboard.nextSessions.length === 0 ? (
               <p>No upcoming sessions</p>
             ) : (
@@ -81,3 +81,4 @@ export default function FacilitatorDashboard() {
     </div>
   );
 }
+

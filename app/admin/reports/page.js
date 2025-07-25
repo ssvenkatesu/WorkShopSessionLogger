@@ -42,7 +42,7 @@ export default function ReportsPage() {
   }
 
   return (
-    <div className="reports-page card-glass">
+    <div className="reports-page card-glass" style={{width:'100%'}}>
       <h1>Workshop Reports</h1>
       
       <div className="report-cards">
@@ -51,17 +51,7 @@ export default function ReportsPage() {
           <p className="stat">{reports?.overallAttendance !== undefined ? reports.overallAttendance + '%' : 'N/A'}</p>
         </div>
         
-        <div className="report-card">
-          <h2>Most Popular Workshop</h2>
-          <p className="highlight">{reports?.mostPopularWorkshop?.title || 'N/A'}</p>
-          <p>{reports?.mostPopularWorkshop?.participants !== undefined ? reports.mostPopularWorkshop.participants + ' participants' : ''}</p>
-        </div>
-        
-        <div className="report-card">
-          <h2>Top Facilitator</h2>
-          <p className="highlight">{reports?.topFacilitator?.name || 'N/A'}</p>
-          <p>{reports?.topFacilitator?.sessions !== undefined ? reports.topFacilitator.sessions + ' sessions' : ''}</p>
-        </div>
+       
       </div>
       
       <div className="detailed-reports">
@@ -73,7 +63,7 @@ export default function ReportsPage() {
               <th>Sessions</th>
               <th>Participants</th>
               <th>Avg. Attendance</th>
-              <th>Feedback Score</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -84,7 +74,7 @@ export default function ReportsPage() {
                   <td>{workshop.sessions}</td>
                   <td>{workshop.participants}</td>
                   <td>{workshop.attendance}%</td>
-                  <td>{workshop.feedbackScore}/5</td>
+                  
                 </tr>
               ))
             ) : (
@@ -94,15 +84,13 @@ export default function ReportsPage() {
         </table>
       </div>
       <div className="detailed-reports section-spacing">
-        <h2>Participant Attendance</h2>
+        <h2>Participants</h2>
         <table>
           <thead>
             <tr>
               <th>Name</th>
               <th>Email</th>
-              <th>Sessions Attended</th>
-              <th>Total Sessions</th>
-              <th>Attendance Rate</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -111,9 +99,7 @@ export default function ReportsPage() {
                 <tr key={p._id}>
                   <td>{p.name}</td>
                   <td>{p.email}</td>
-                  <td>{p.attended}</td>
-                  <td>{p.total}</td>
-                  <td>{p.attendanceRate}%</td>
+                 
                 </tr>
               ))
             ) : (

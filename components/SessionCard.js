@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SessionCard({ session, onView, actionLabel = 'View Details' }) {
+export default function SessionCard({ session, onView, onDelete }) {
   return (
     <div className="session-card">
       <h2>{session.title}</h2>
@@ -19,9 +19,16 @@ export default function SessionCard({ session, onView, actionLabel = 'View Detai
           <span>Resources: {session.resources.length}</span>
         )}
       </div>
-      <button onClick={onView} className="view-btn">
-        {actionLabel}
-      </button>
+      <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+        <button onClick={onView} className="view-btn">
+          View
+        </button>
+        {onDelete && (
+          <button onClick={onDelete} className="delete-btn">
+            Delete
+          </button>
+        )}
+      </div>
     </div>
   );
 }

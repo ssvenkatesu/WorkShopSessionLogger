@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import Session from '@/models/Session';
+import Workshop from '@/models/Workshop';
 import dbConnect from '@/lib/db';
 import { requireRole } from '@/lib/auth';
 

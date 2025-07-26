@@ -8,10 +8,10 @@ export default function SessionCard({ session, onView, onDelete }) {
         {session.date ? new Date(session.date).toLocaleDateString() : ''} | {session.startTime} - {session.endTime}
       </p>
       {session.workshop && (
-        <p className="workshop">Workshop: {session.workshop.title || session.workshop}</p>
+        <p className="workshop">Workshop: {session.workshop.title || (typeof session.workshop === 'string' ? session.workshop : 'Unknown Workshop')}</p>
       )}
       {session.facilitator && (
-        <p className="facilitator">Facilitator: {session.facilitator.name || session.facilitator}</p>
+        <p className="facilitator">Facilitator: {session.facilitator.name || (typeof session.facilitator === 'string' ? session.facilitator : 'Unknown Facilitator')}</p>
       )}
       <div className="session-stats">
         <span>Attendees: {session.attendance ? session.attendance.length : 0}</span>

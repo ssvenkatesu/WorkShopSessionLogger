@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getParticipantDashboard } from '@/lib/api';
-import ParticipantSidebar from '@/components/ParticipantSidebar';
-import DashboardLayout from '@/components/DashboardLayout';
+
 
 export default function ParticipantDashboard() {
   const [dashboard, setDashboard] = useState(null);

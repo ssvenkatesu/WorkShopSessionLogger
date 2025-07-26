@@ -18,7 +18,7 @@ export async function POST(req) {
       );
     }
     
-    // Check if user is already marked present
+  
     if (session.attendance.includes(userId)) {
       return NextResponse.json({
         success: true,

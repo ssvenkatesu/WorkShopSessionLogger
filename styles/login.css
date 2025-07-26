@@ -17,7 +17,7 @@ body, .auth-bg {
 }
 
 .auth-form-container {
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.85);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 0 24px 2px #6a11cb44;
   border-radius: 32px;
  
@@ -282,7 +282,7 @@ input::placeholder {
   font-weight: 700;
   z-index: 2;
 }
-/* For autofilled inputs (browser autofill) */
+
 .form-group input:-webkit-autofill + label {
   top: -0.8rem;
   left: 1rem;
@@ -295,7 +295,7 @@ input::placeholder {
   z-index: 2;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 600px) {
   .auth-form-container {
     padding: 1.2rem 0.5rem;

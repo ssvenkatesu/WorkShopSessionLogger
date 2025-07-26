@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSessionDetails, markAttendance } from '@/lib/api';
 
-import QRCodeGenerator from '@/components/QRCodeGenerator';
+
 import '../../../../styles/participant.css';
 import React from 'react';
 
@@ -15,11 +15,7 @@ export default function SessionPage({ params }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [feedbacks, setFeedbacks] = useState([]);
-  const [myFeedback, setMyFeedback] = useState(null);
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
-  const [feedbackMsg, setFeedbackMsg] = useState('');
+ 
   const router = useRouter();
 
   useEffect(() => {
@@ -45,19 +41,6 @@ export default function SessionPage({ params }) {
     fetchSession();
   }, [id]);
 
-  useEffect(() => {
-    const fetchFeedbacks = async () => {
-      const res = await getSessionFeedback(id);
-      if (res.success) {
-        setFeedbacks(res.feedbacks);
-        const user = JSON.parse(localStorage.getItem('user'));
-        const mine = res.feedbacks.find(f => f.user._id === user.id);
-        setMyFeedback(mine);
-      }
-    };
-    fetchFeedbacks();
-  }, [id]);
-
   const handleAttendance = async () => {
     try {
       setLoading(true);
@@ -68,7 +51,7 @@ export default function SessionPage({ params }) {
       await markAttendance(id, user.id);
       setSuccess('Attendance marked successfully');
       
-      // Refresh session data
+   
       const updatedSession = await getSessionDetails(id);
       setSession(updatedSession);
     } catch (err) {
@@ -97,17 +80,13 @@ export default function SessionPage({ params }) {
         <div className="session-info">
           <p><strong>Date:</strong> {new Date(session.date).toLocaleDateString()}</p>
           <p><strong>Time:</strong> {session.startTime} - {session.endTime}</p>
-          <p><strong>Workshop:</strong> {session.workshop.title}</p>
-          <p><strong>Facilitator:</strong> {session.facilitator.name}</p>
+          <p><strong>Workshop:</strong> {session.workshop?.title || 'Unknown Workshop'}</p>
+          <p><strong>Facilitator:</strong> {session.facilitator?.name || 'Unknown Facilitator'}</p>
         </div>
         <div className="attendance-section">
           <h2>Mark Attendance</h2>
           {success && <div className="success-message">{success}</div>}
           <div className="attendance-options">
-            <div className="qr-option">
-              <h3>QR Code Attendance</h3>
-              <QRCodeGenerator sessionId={session._id} />
-            </div>
             <div className="manual-option">
               <h3>Manual Attendance</h3>
               <button 

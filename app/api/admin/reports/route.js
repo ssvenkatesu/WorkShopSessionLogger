@@ -15,7 +15,7 @@ export async function GET(req) {
     const sessions = await Session.find().populate('workshop').populate('attendance');
     const participants = await User.find({ role: 'participant' }).select('name email');
 
-    // Calculate overall attendance
+  
     let totalPossible = 0;
     let totalAttended = 0;
     sessions.forEach(session => {
@@ -24,7 +24,7 @@ export async function GET(req) {
     });
     const overallAttendance = totalPossible > 0 ? Math.round((totalAttended / totalPossible) * 100) : 0;
 
-    // Per-workshop attendance
+ 
     const workshopPerformance = workshops.map(w => {
       const wsessions = Array.isArray(w.sessions) ? w.sessions : [];
       const totalSessPossible = wsessions.reduce((sum, s) => sum + (w.participants.length), 0);
@@ -38,15 +38,15 @@ export async function GET(req) {
       };
     });
 
-    // Per-participant attendance
+
     const participantAttendance = await Promise.all(participants.map(async p => {
-      // Find all sessions this participant could attend (sessions in workshops they are registered for)
+
       const myWorkshops = workshops.filter(w => w.participants.some(u => (u._id || u) == p._id));
       const mySessions = myWorkshops.flatMap(w => Array.isArray(w.sessions) ? w.sessions : []);
-      // Count sessions attended
+  
       let attended = 0;
       for (const s of mySessions) {
-        // s may be a session object or just an id
+        
         let sessionObj = s.title ? s : await Session.findById(s);
         if (sessionObj && Array.isArray(sessionObj.attendance) && sessionObj.attendance.some(u => (u._id || u) == p._id)) {
           attended++;

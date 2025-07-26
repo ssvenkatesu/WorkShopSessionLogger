@@ -17,7 +17,7 @@
   --glass-blur: blur(12px);
 }
 
-.card, .workshop-card, .session-card, .report-card, .certificate-card, .session-details, .detailed-reports, .form-container, .auth-form-container {
+.card, .workshop-card, .session-card, .report-card, .session-details, .detailed-reports, .form-container, .auth-form-container {
   background: var(--glass-bg);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
@@ -25,7 +25,7 @@
   border: 1.5px solid rgba(67,97,238,0.10);
   transition: box-shadow 0.3s, transform 0.2s, border 0.3s;
 }
-.card:hover, .workshop-card:hover, .session-card:hover, .report-card:hover, .certificate-card:hover {
+.card:hover, .workshop-card:hover, .session-card:hover, .report-card:hover{
   box-shadow: 0 12px 48px 0 rgba(67,97,238,0.18);
   border: 1.5px solid var(--primary);
   transform: translateY(-6px) scale(1.03);
@@ -94,7 +94,7 @@ input:focus, textarea:focus, select:focus {
   outline: none;
 }
 
-/* Table Enhancements */
+
 table {
   background: var(--glass-bg);
   border-radius: 14px;
@@ -109,7 +109,7 @@ tr:hover {
   background: rgba(67,97,238,0.07);
 }
 
-/* List Enhancements */
+
 ul, ol {
   padding-left: 1.2em;
 }
@@ -121,77 +121,27 @@ li:hover {
   color: var(--primary-dark);
 }
 
-/* Animations */
+
 @keyframes glow {
   0% { box-shadow: 0 0 0 0 rgba(67,97,238,0.2); }
   70% { box-shadow: 0 0 16px 8px rgba(67,97,238,0.13); }
   100% { box-shadow: 0 0 0 0 rgba(67,97,238,0.2); }
 }
-.card:hover, .workshop-card:hover, .session-card:hover, .report-card:hover, .certificate-card:hover {
+.card:hover, .workshop-card:hover, .session-card:hover, .report-card:hover {
   animation: glow 1.2s linear;
 }
 
-.feedback-section {
-  margin-top: 2.5rem;
-  background: var(--glass-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  padding: 2rem;
-  margin-bottom: 2rem;
-}
-.feedback-summary {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: var(--primary-dark);
-}
-.your-feedback {
-  background: rgba(67,97,238,0.07);
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  color: var(--success);
-}
-.feedback-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  margin-bottom: 1.5rem;
-}
-.feedback-form select, .feedback-form textarea {
-  font-size: 1rem;
-  border-radius: 8px;
-  border: 1.5px solid #ddd;
-  padding: 0.5rem 1rem;
-  background: rgba(255,255,255,0.85);
-  transition: border 0.2s, box-shadow 0.2s;
-}
-.feedback-form select:focus, .feedback-form textarea:focus {
-  border: 1.5px solid var(--primary);
-  box-shadow: 0 0 0 4px rgba(67,97,238,0.10);
-  outline: none;
-}
-.feedback-list {
-  margin-top: 1.5rem;
-}
-.feedback-list ul {
-  list-style: none;
-  padding-left: 0;
-}
-.feedback-list li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--light-gray);
-  color: var(--dark);
-}
-.feedback-list li:last-child {
-  border-bottom: none;
-}
+
+
+
+
 
 /* Responsive Tweaks */
 @media (max-width: 768px) {
   .sidebar {
     border-radius: 0 0 24px 24px;
   }
-  .card, .workshop-card, .session-card, .report-card, .certificate-card, .session-details, .detailed-reports, .form-container, .auth-form-container {
+  .card, .workshop-card, .session-card, .report-card, .session-details, .detailed-reports, .form-container, .auth-form-container {
     padding: 12px;
   }
 }

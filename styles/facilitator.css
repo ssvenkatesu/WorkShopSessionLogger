@@ -59,7 +59,7 @@
   min-width: 260px;
   max-width: 340px;
   animation: fadeInUp 0.7s;
-  backdrop-filter: blur(10px);
+
   transition: all 0.3s ease;
   color: #222;
 }

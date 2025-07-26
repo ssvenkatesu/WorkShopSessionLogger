@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getDashboardStats } from '@/lib/api';
-import AdminSidebar from '@/components/AdminSidebar';
-import DashboardLayout from '@/components/DashboardLayout';
+
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
